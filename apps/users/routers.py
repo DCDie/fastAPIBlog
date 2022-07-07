@@ -18,17 +18,17 @@ async def get_user(pk: int):
     return user
 
 
-@router.post(path="/", response_model=UserSchema)
+@router.post(path="/", response_model=UserSchema, response_model_exclude_unset=True)
 async def create_user(user: UserSchema):
-    validated_data = user.dict(exclude_unset=True)
+    validated_data = user.dict()
     user = await User.objects.create(**validated_data)
     return user
 
 
-@router.put(path="/{pk}/", response_model=UserSchema)
+@router.put(path="/{pk}/", response_model=UserSchema, response_model_exclude_unset=True)
 async def update_user(pk: int, user: UserSchema):
     instance = await User.objects.get(id=pk)
-    validated_data = user.dict(exclude_unset=True)
+    validated_data = user.dict()
     user = await instance.update(**validated_data)
     return user
 
@@ -40,9 +40,9 @@ async def delete_user(pk: int):
     return instance
 
 
-@router.patch(path="/{pk}/", response_model=UserSchema)
+@router.patch(path="/{pk}/", response_model=UserSchema, response_model_exclude_unset=True)
 async def patch_user(pk: int, user: UserSchema):
     instance = await User.objects.get(id=pk)
-    validated_data = user.dict(exclude_unset=True)
+    validated_data = user.dict()
     user = await instance.update(**validated_data)
     return user
