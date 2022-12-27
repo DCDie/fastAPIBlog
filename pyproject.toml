@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "fastapiblog"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Cuznetov <daniel.cuznetov@ebs-integrator.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.88.0"
+sqlalchemy = "^1.4.45"
+uvicorn = "^0.20.0"
+pydantic = {extras = ["email"], version = "^1.10.2"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
