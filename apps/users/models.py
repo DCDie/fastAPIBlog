@@ -1,16 +1,16 @@
-import databases
-import orm
+from sqlalchemy import Column
+from sqlalchemy import Integer
+from sqlalchemy import String
+from sqlalchemy.orm import declarative_base
 
-database = databases.Database("sqlite:///db")
-models = orm.ModelRegistry(database=database)
 
+class User(declarative_base()):
+    __tablename__ = "users"
 
-class User(orm.Model):
-    tablename = "users"
-    registry = models
-    fields = {
-        "id": orm.Integer(primary_key=True, allow_null=True),
-        "username": orm.Email(max_length=25),
-        "email": orm.Email(max_length=25),
-        "password": orm.String(max_length=256)
-    }
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    username = Column(String)
+    email = Column(String)
+    password = Column(String)
+
+    def __repr__(self):
+        return f"User(id={self.id}, username={self.username}, email={self.email})"

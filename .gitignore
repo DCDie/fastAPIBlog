@@ -188,5 +188,5 @@ cython_debug/
 
 # Database
 *.sqlite3
-db
+*.db
 *.sqlite
